@@ -1,2 +1,2 @@
 # PyDev_ZoomCamp2024
-ZoomCamp2024 Project
+Data Engineering ZoomCamp2024 Project
