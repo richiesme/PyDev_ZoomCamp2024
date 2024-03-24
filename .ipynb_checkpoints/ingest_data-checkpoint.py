@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-#import subprocess
 import os
 import argparse
 from time import time
@@ -17,26 +16,16 @@ def main(params):
     db = params.db
     table_name = params.table_name
     url = params.url
-    #csv_name = "output.csv"
 
+    csv_name = "output.csv -v"
 
-
-    csv_name = url.split("/")[-1]
+    os.system(f"wget {url} -o {csv_name}")
 
     #download the csv
-    os.system(f'wget "http://172.19.147.242:8000/yellow_tripdata_2021-01.csv" -O {csv_name}')
-
-    # # Decompress the CSV file
-    # os.system(f'gunzip {csv_name}.gz')
-
-    # # Remove the ".gz" extension from the file name
-    # csv_name = csv_name[:-3]
-    
-
 
     engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{db}")
 
-    df_iter = pd.read_csv(csv_name, low_memory=False, iterator=True, chunksize=100000)
+    df_iter = pd.read_csv(csv_name, iterator=True, chunksize=100000)
 
     df = next(df_iter)
 
