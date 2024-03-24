@@ -71,7 +71,7 @@ URL="http://172.19.147.242:8000/yellow_tripdata_2021-01.csv"
 python3 ingest_data.py \
   --user=root \
   --password=root \
-  --host=localhost \
+  --host=pg-database \
   --port=5432 \
   --db=ny_taxi \
   --table_name=yellow_taxi_trips \
